@@ -1,0 +1,16 @@
+http://localhost:2000/users
+change to
+http://localhost:2000/user
+ini localhost punya db.json mas abdi, harus bikin baru lagi biar ga bentrok, ato ga langsung sambung dengan localhost punya ku aja yg fake twitter api
+
+socio app twitter clone h-1 ujian modul 2
+
+twitter clone ini dihubungkan dengan --> clone-twitter-fake-api
+
+Question:
+untuk login how it can search by username or email address?
+
+
+munculin di browser pake 
+diterminal:
+npm start
