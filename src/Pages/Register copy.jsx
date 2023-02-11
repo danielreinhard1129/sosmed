@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, FormControl, FormLabel, Input, InputGroup, InputRightAddon, Text, Flex, Stack } from '@chakra-ui/react';
+import { Box, Button, Container, FormControl, FormLabel, Input, InputGroup, InputRightAddon, Text, Flex, useColorModeValue } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import FormInputLabel from '../Components/Form';
 import Loading from '../Components/Loading';
 
+// sebelum diuji coba responsive
 
 const RegisPage = (props) => {
     const navigate = useNavigate();
@@ -66,39 +67,35 @@ const RegisPage = (props) => {
             bg={'gray.50'}
         >
             <Container maxW='4xl'>
-                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-                    <Box m='auto' my='26' py='6' px='8' width='lg' boxShadow='md' bg='white'>
-                            <Text fontSize='4xl' fontWeight='bold' style={{ display: 'flex' }}>Welcome to<Text fontSize='4xl' fontWeight='bold' color='twitter.500' pl='2'>TWOTTER</Text></Text>
-                            <div style={{ display: 'flex' }}>
-                                <Text>Already have an account ?</Text>
-                                <Button type='button' ml='1.5' variant='link' colorScheme='twitter' onClick={() => navigate('/')}>Login</Button>
-                            </div>
-                        <Stack spacing={4}>
-                            <FormControl 
-                            // my={10}
-                            >
-                            <FormInputLabel name='Username' type='text' onChange={(e) => setUsername(e.target.value)} placeholder='Type in your username' />
-                            <FormInputLabel name='Email address' type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
-                                <FormLabel>Password</FormLabel>
-                                <InputGroup>
-                                    <Input type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
-                                    <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
-                                        {
-                                            visible == 'password' ?
-                                                <ViewIcon /> :
-                                                <ViewOffIcon />
-                                        }
-                                    </InputRightAddon>
-                                </InputGroup>
-                            </FormControl>
-                            <Stack spacing={10} pt={2}>
-                                <Button my='4' width='full' type='button' colorScheme='twitter' onClick={onBtnRegis}>
-                                    Register
-                                </Button>
-                            </Stack>
-                        </Stack>
-                    </Box>
-                </Stack>
+                <Box m='auto' my='26' py='6' px='8' width='lg' boxShadow='md' bg='white'>
+                    <Text fontSize='4xl' fontWeight='bold' style={{ display: 'flex' }}>Welcome to<Text fontSize='4xl' fontWeight='bold' color='twitter.500' pl='2'>TWOTTER</Text></Text>
+                    <div style={{ display: 'flex' }}>
+                        <Text>Already have an account ?</Text>
+                        <Button type='button' ml='1.5' variant='link' colorScheme='twitter' onClick={() => navigate('/')}>Login</Button>
+                    </div>
+                    <FormInputLabel name='Username' type='text' onChange={(e) => setUsername(e.target.value)} placeholder='Type in your username' />
+                    <FormInputLabel name='Email' type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
+                    <FormControl my='6'>
+                        <FormLabel>Password</FormLabel>
+                        <InputGroup>
+                            <Input type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
+                            <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
+                                {
+                                    visible == 'password' ?
+                                        <ViewIcon /> :
+                                        <ViewOffIcon />
+                                }
+                            </InputRightAddon>
+                        </InputGroup>
+                        {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
+                    </FormControl>
+                    <Button my='4' width='full' type='button' colorScheme='twitter' onClick={onBtnRegis}>
+                        Register
+                    </Button>
+                    {/* <Button my='4' py='7' width='full' variant='outline' type='button' onClick={() => navigate('/')}>
+                    <FcGoogle size={36} style={{ marginRight: '12px' }} /> <span> Sign up with Google</span>
+                </Button> */}
+                </Box>
             </Container>
         </Flex>
     }

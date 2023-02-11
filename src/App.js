@@ -12,6 +12,8 @@ import { loginAction, mwKeepLogin } from './actions/authAction';
 import React from 'react';
 import LandingPage from './Pages/Landing';
 import OtherProfile from './Pages/OtherProfile';
+import Verification from './Pages/Verification';
+import Percobaan from './Pages/Percobaan';
 
 function App() {
   // 1. Render 1
@@ -46,9 +48,14 @@ function App() {
           </>
       }
       {/* kalo uda ada role dia baru bisa akses landing sama other profiles */}
-      <Route path='/landing' element={<LandingPage />} />
-      <Route path='/other/:id' element={<OtherProfile />} />
-      <Route path='*' element={<NotFound />} />
+      <Route path='/landing' element={<LandingPage loading={loading}/>} /> 
+      <Route path='/other/:id' element={<OtherProfile loading={loading}/>} />
+      <Route path='*' element={<NotFound loading={loading}/>} />
+      <Route path='/verification' element={<Verification loading={loading} />} />
+
+      {/* buat nyoba */}
+      <Route path='/percobaan' element={<Percobaan loading={loading} />} />
+
     </Routes>
   </>;
 }

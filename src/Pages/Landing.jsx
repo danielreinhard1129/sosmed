@@ -1,8 +1,16 @@
-import { Avatar, Box, Card, CardHeader, Container, Flex, Text } from '@chakra-ui/react';
+import { Avatar, Box, Card, CardHeader, Container, Flex, Text, Heading, Button, Divider, IconButton } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../helper';
+import Sidebar from '../Components/Sidebar';
+import Feeds from '../Components/Feeds';
+import Tweets from '../Components/Tweets';
+import {SearchBar} from '../Components/SearchBar';
+import {
+    FiSettings
+} from 'react-icons/fi';
+
 
 function LandingPage() {
     // Menampung data user yang diambil
@@ -23,10 +31,23 @@ function LandingPage() {
 
     const printUser = () => {
         return userList.map((val, idx) => {
-            return <Card mb='2' cursor='pointer' display='flex' key={val.id}>
-                <Link to={`/other/${val.id}`}>  
-                {/* ini pas nge klik dia arahin ke nama other profile cth:  http://localhost:3000/other/3 */}
-                    <CardHeader>{val.username}</CardHeader>
+            return <Card mb='2' cursor='pointer' display='flex' key={val.id} shadow='none'>
+                <Link to={`/other/${val.id}`}>
+                    {/* ini pas nge klik dia arahin ke nama other profile cth:  http://localhost:3000/other/3 */}
+                    <CardHeader>
+                        <Flex justifyContent={'space-between'}>
+                            <Avatar size="sm" src="avatar-1.jpg" marginTop='3' marginRight='1' />
+                            <Box marginRight='10'>
+                                <Heading as="h3" size="sm" marginTop="1vh" >{val.username}</Heading>
+                                <Text color="gray">@{val.username}</Text>
+                            </Box>
+                            <Button type='button' colorScheme='twitter' marginTop="1vh"
+                                borderRadius="30px"
+                                variant='outline'
+                            >Follow</Button>
+                        </Flex>
+                    </CardHeader>
+                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" marginTop="1vh" />
                     {/* daftar nama" yang kebawah */}
                 </Link>
             </Card>
@@ -35,14 +56,45 @@ function LandingPage() {
 
     return <Container maxW="6xl">
         <Flex>
+            {/* Left Side Bar / User Menu */}
             <Box flex='1'>
-                <Text textAlign='center' border='1px'>User Menu</Text>
+                < Sidebar />
+                {/* <Text textAlign='center' border='1px'>User Menu</Text> */}
             </Box>
-            <Box flex='2'>
-                <Text textAlign='center' border='1px'>Tweet</Text>
+            {/* Middle content / Tweets */}
+            <Box flex='2' >
+                <Text textAlign='center' border='0px' mt='14' mr='24' >
+                    < Feeds />
+                    <Divider display="flex" orientation='horizontal' my='10' borderColor="gray.200" />
+                </Text>
+                <Text textAlign='left' border='0px' mt='9' mr='16' >
+                    < Tweets />
+                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
+                    < Tweets />
+                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
+                    < Tweets />
+                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
+                </Text>
             </Box>
+            {/* Right content / Who to Follow */}
             <Box flex='1' textAlign='center'>
-                <Text my='3' colorSc>Who to follow</Text>
+                <Flex mt='4' >
+                <SearchBar />
+                </Flex>
+                <Box  display='flex' my='3'>
+                    <Text textAlign='left' fontWeight="bold" mt='2'>
+                        Who to follow
+                    </Text>
+                    <IconButton
+                        icon={<FiSettings size="20" />}
+                        aria-label="Write comment"
+                        variant="ghost"
+                        as={Link}
+                        to="compose/quack"
+                        ml='32'
+                        color='gray.500'
+                    />
+                </Box>
                 <Box id='list-user'>
                     {printUser()}
                 </Box>
