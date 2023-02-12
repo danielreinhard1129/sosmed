@@ -15,7 +15,7 @@ import { TbCalendarTime } from 'react-icons/tb';
 
 function Feeds() {
     return (
-      <Flex align="start">
+      <Flex align="start" p='2' borderBottom='1px' borderColor='gray.200'>
         <Avatar />
         <Flex ml="2" direction="column" flexGrow={1}>
           <Textarea

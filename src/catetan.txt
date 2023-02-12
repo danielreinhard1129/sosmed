@@ -62,3 +62,5 @@ const theme = extendTheme({ breakpoints })
 function Example() {
   return <Box width={{ base: '100%', sm: '50%', md: '25%' }} />
 }
+
+ternyata klo component chakra ada suggestion dia lsg nge import keatas kalo kita klik

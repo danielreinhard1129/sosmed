@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardHeader, Container, Flex, Text, Heading, Button, Divider, IconButton } from '@chakra-ui/react';
+import { Avatar, Box, Card, CardHeader, Container, Flex, Text, Heading, Button, Divider, IconButton, VStack, Stack } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { API_URL } from '../helper';
 import Sidebar from '../Components/Sidebar';
 import Feeds from '../Components/Feeds';
 import Tweets from '../Components/Tweets';
-import {SearchBar} from '../Components/SearchBar';
+import { SearchBar } from '../Components/SearchBar';
 import {
     FiSettings
 } from 'react-icons/fi';
@@ -54,35 +54,50 @@ function LandingPage() {
         });
     }
 
-    return <Container maxW="6xl">
-        <Flex>
+    return <Container
+        maxW={{ base: 'xl', sm: '2xl', md: '4xl', lg: '6xl' }}
+    >
+        <Flex >
             {/* Left Side Bar / User Menu */}
-            <Box flex='1'>
-                < Sidebar />
+            <Box
+            // flex={{ base:0 , sm: 0, md: 1}}
+            >
+                <Flex
+                    display={{ base: 'none', sm: 'flex', md: 'flex', lg: 'flex', xl: 'flex' }}
+                >
+                    < Sidebar />
+                </Flex>
                 {/* <Text textAlign='center' border='1px'>User Menu</Text> */}
             </Box>
             {/* Middle content / Tweets */}
-            <Box flex='2' >
-                <Text textAlign='center' border='0px' mt='14' mr='24' >
+            <Box flex='2' borderLeft='1px' borderRight='1px' borderColor='gray.200'
+            >
+                <Stack textAlign='center' border='0px' mt='9' >
                     < Feeds />
-                    <Divider display="flex" orientation='horizontal' my='10' borderColor="gray.200" />
-                </Text>
-                <Text textAlign='left' border='0px' mt='9' mr='16' >
+                </Stack>
+                <VStack border='0px'  overflow='auto' h='100vh'
+                    sx={
+                        {
+                            '::-webkit-scrollbar': {
+                                display: 'none'
+                            }
+                        }
+                    }
+                >
                     < Tweets />
-                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
                     < Tweets />
-                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
-                    < Tweets />
-                    <Divider display="flex" orientation='horizontal' borderColor="gray.200" />
-                </Text>
+
+                </VStack>
             </Box>
             {/* Right content / Who to Follow */}
-            <Box flex='1' textAlign='center'>
-                <Flex mt='4' >
-                <SearchBar />
+            <Box flex='1' textAlign='center' 
+                display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}
+            >
+                <Flex mt='4' ml='8' >
+                    <SearchBar />
                 </Flex>
-                <Box  display='flex' my='3'>
-                    <Text textAlign='left' fontWeight="bold" mt='2'>
+                <Box display='flex' my='3' borderBottom='1px' borderColor='gray.200'>
+                    <Text textAlign='left' fontWeight="bold" mt='2' ml='8'>
                         Who to follow
                     </Text>
                     <IconButton
@@ -91,11 +106,13 @@ function LandingPage() {
                         variant="ghost"
                         as={Link}
                         to="compose/quack"
-                        ml='32'
+                        ml='28'
                         color='gray.500'
                     />
                 </Box>
-                <Box id='list-user'>
+                <Box id='list-user'
+                    display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}
+                >
                     {printUser()}
                 </Box>
             </Box>

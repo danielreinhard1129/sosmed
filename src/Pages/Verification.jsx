@@ -13,11 +13,21 @@ import {
 import { PinInput, PinInputField } from '@chakra-ui/react';
 import Twotterlogo from '../assets/twotterlogo.png';
 import Loading from '../Components/Loading';
+import { useParams } from 'react-router-dom'
 
 
 // onBtnVerifikasi
 
-const Verification = (props) => {
+const Verification = async (props) => {
+  const params = useParams();
+  console.log(params.token); //di console kluarin token
+  let res = await axios.patch('http:localhost:2000/users/verify', {
+    headers:{
+      'Authorization': `Bearer ${params.token}`
+    }
+  })
+
+
   if (props.loading) {
     return <Text><Loading /></Text>
   } else {
