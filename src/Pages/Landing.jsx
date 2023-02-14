@@ -59,40 +59,27 @@ function LandingPage() {
     >
         <Flex >
             {/* Left Side Bar / User Menu */}
-            <Box
-            // flex={{ base:0 , sm: 0, md: 1}}
-            >
-                <Flex
-                    display={{ base: 'none', sm: 'flex', md: 'flex', lg: 'flex', xl: 'flex' }}
-                >
+            <Box>
+                <Flex display={{ base: 'none', sm: 'flex', md: 'flex', lg: 'flex', xl: 'flex' }}>
                     < Sidebar />
                 </Flex>
-                {/* <Text textAlign='center' border='1px'>User Menu</Text> */}
             </Box>
             {/* Middle content / Tweets */}
-            <Box flex='2' borderLeft='1px' borderRight='1px' borderColor='gray.200'
-            >
+            <Box flex='2' borderLeft='1px' borderRight='1px' borderColor='gray.200'>
                 <Stack textAlign='center' border='0px' mt='9' >
                     < Feeds />
                 </Stack>
-                <VStack border='0px'  overflow='auto' h='100vh'
-                    sx={
-                        {
-                            '::-webkit-scrollbar': {
-                                display: 'none'
-                            }
-                        }
-                    }
-                >
+                <VStack border='0px'  overflow='auto' h='100vh' sx={{'::-webkit-scrollbar': {display: 'none'}}}>
                     < Tweets />
                     < Tweets />
-
+                    < Tweets />
+                    < Tweets />
+                    < Tweets />
+                    < Tweets />
                 </VStack>
             </Box>
             {/* Right content / Who to Follow */}
-            <Box flex='1' textAlign='center' 
-                display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}
-            >
+            <Box flex='1' textAlign='center' display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}>
                 <Flex mt='4' ml='8' >
                     <SearchBar />
                 </Flex>
@@ -110,9 +97,7 @@ function LandingPage() {
                         color='gray.500'
                     />
                 </Box>
-                <Box id='list-user'
-                    display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}
-                >
+                <Box id='list-user' display={{ base: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}>
                     {printUser()}
                 </Box>
             </Box>

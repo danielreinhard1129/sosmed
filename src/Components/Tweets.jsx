@@ -13,7 +13,6 @@ import {
 import {
   AiOutlineMessage,
   AiOutlineHeart,
-  AiFillHeart,
   AiOutlineShareAlt,
   AiOutlineRetweet
 } from 'react-icons/ai';
@@ -52,9 +51,7 @@ function Tweets() {
                 as={Link}
                 to="compose/quack"
               />
-              <Text
-              // mr="16" mt="2"
-              >1</Text>
+              <Text>1</Text>
             </Flex>
             <Flex align='center'>
               <IconButton
@@ -64,32 +61,23 @@ function Tweets() {
                 as={Link}
                 to="compose/quack"
               />
-              <Text
-              // mr="16" mt="2"
-              >1</Text>
+              <Text>1</Text>
             </Flex>
-            {/* <Spacer /> */}
             <Flex align='center'>
               <IconButton
-                // icon={<AiFillHeart size="20" />}
                 icon={<AiOutlineHeart size="20" />}
                 aria-label="Like"
                 variant="ghost"
               />
-              <Text
-              // mr="16" mt="2"
-              >1</Text>
+              <Text>1</Text>
             </Flex>
-            {/* <Spacer /> */}
             <Flex align='center'>
               <IconButton
                 icon={<AiOutlineShareAlt size="20" />}
                 aria-label="Share"
                 variant="ghost"
               />
-              <Text
-              // mr="16" mt="2"
-              >1</Text>
+              <Text>1</Text>
             </Flex>
             </Flex>
         </Box>

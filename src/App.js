@@ -51,7 +51,7 @@ function App() {
       <Route path='/landing' element={<LandingPage loading={loading}/>} /> 
       <Route path='/other/:id' element={<OtherProfile loading={loading}/>} />
       <Route path='*' element={<NotFound loading={loading}/>} />
-      <Route path='/verification/:token' element={<Verification loading={loading} />} />
+      <Route path='/verification/:token' element={<Verification  loading={loading} />} />
 
       {/* buat nyoba */}
       <Route path='/percobaan' element={<Percobaan loading={loading} />} />

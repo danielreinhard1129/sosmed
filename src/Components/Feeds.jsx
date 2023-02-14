@@ -11,7 +11,6 @@ import { IoImageOutline } from 'react-icons/io5';
 import { AiOutlineGif } from 'react-icons/ai';
 import { RiBarChartHorizontalFill } from 'react-icons/ri';
 import { VscSmiley, VscCalendar } from 'react-icons/vsc';
-import { TbCalendarTime } from 'react-icons/tb';
 
 function Feeds() {
     return (

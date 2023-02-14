@@ -13,19 +13,33 @@ import {
 import { PinInput, PinInputField } from '@chakra-ui/react';
 import Twotterlogo from '../assets/twotterlogo.png';
 import Loading from '../Components/Loading';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 
 // onBtnVerifikasi
 
-const Verification = async (props) => {
+const Verification = (props) => {
+  const navigate = useNavigate();
   const params = useParams();
   console.log(params.token); //di console kluarin token
-  let res = await axios.patch('http:localhost:2000/users/verify', {
-    headers:{
-      'Authorization': `Bearer ${params.token}`
+  
+  const onBtnVerify=async()=>{
+    try {
+      let res = await axios.patch('http://localhost:2000/user/verify', {}, { // objek kosong ditulis krn kita butuh parameter ke 3 untuk nulis headers (konfig headers di p 3)
+        headers:{ //pasti headers, krn token dibaca di headers
+          'Authorization': `Bearer ${params.token}` //ini yg di thunderclient, authorixation itu bawaan jg
+        }
+      });
+      console.log(res.data);
+      if(res.data.success){ //dari file expense api tracker
+        alert(res.data.message);
+        navigate('/');
+      }
+    } catch (error) {
+      console.log(error);
     }
-  })
+  }
 
 
   if (props.loading) {
@@ -36,13 +50,11 @@ const Verification = async (props) => {
         minH={'100vh'}
         align={'center'}
         justify={'center'}
-        // bg={useColorModeValue('gray.50', 'gray.800')}
         bg='gray.50'>
         <Stack
           spacing={4}
           w={'full'}
           maxW={'sm'}
-          // bg={useColorModeValue('white', 'gray.700')}
           bg = 'white'
           // rounded={'xl'}
           boxShadow={'md'}
@@ -58,7 +70,6 @@ const Verification = async (props) => {
           </Center>
           <Center
             fontSize={{ base: 'sm', sm: 'md' }}
-            // color={useColorModeValue('gray.800', 'gray.400')}
             color='gray.800'
             >
             We have sent code to your email
@@ -66,7 +77,6 @@ const Verification = async (props) => {
           <Center
             fontSize={{ base: 'sm', sm: 'md' }}
             fontWeight="bold"
-            // color={useColorModeValue('gray.800', 'gray.400')}
             color='gray.800'
             >
             username@mail.com
@@ -74,12 +84,12 @@ const Verification = async (props) => {
           <FormControl>
             <Center>
               <HStack>
-                <PinInput>
+                {/* <PinInput>
                   <PinInputField />
                   <PinInputField />
                   <PinInputField />
                   <PinInputField />
-                </PinInput>
+                </PinInput> */}
               </HStack>
             </Center>
           </FormControl>
@@ -89,7 +99,10 @@ const Verification = async (props) => {
               color={'white'}
               _hover={{
                 bg: 'twitter.600',
-              }}>
+              }}
+              type='button'
+              onClick={onBtnVerify}
+              >
               Verify
             </Button>
           </Stack>

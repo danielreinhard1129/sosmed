@@ -64,3 +64,6 @@ function Example() {
 }
 
 ternyata klo component chakra ada suggestion dia lsg nge import keatas kalo kita klik
+
+<Route path='/verification/:token' element={<Verification loading={loading} />} />
+ini request params token
