@@ -10,4 +10,4 @@ const FormInputLabel = (props) => {
     </FormControl>
 }
 
-export default FormInputLabel;
+export default FormInputLabel; // di pake di register 

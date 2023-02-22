@@ -1,31 +1,39 @@
 import React from 'react';
-import { Box, Button, ButtonGroup, Container, Flex, Text, Menu, MenuButton, MenuItem, MenuList, Spinner, Image, IconButton } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Container, Flex, Text, Menu, MenuButton, MenuItem, MenuList, Spinner, Image, IconButton, Tooltip } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { logoutAction } from '../actions/authAction';
-import Twotterlogo from '../assets/twotterlogo.png';
+import { logoutUserAction } from '../actions/authAction';
 import {
     FiMenu
 } from 'react-icons/fi';
 import { IoClose } from "react-icons/io5";
 import { useState } from 'react';
+import { MdOutlineVerified } from "react-icons/md";
 
 const NavbarComp = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const username = useSelector((state) => state.auth.username); // mengambil data dari reducer
-    const [display, changeDisplay] = useState('none')
+    const [display, changeDisplay] = useState('none');
+    const dataStatus = useSelector((state) => state.auth.status)
+    console.log("ini username", username);
+
+    let link = ''
+    if (username) {
+        link = '/landing'
+    } else {
+        link = '/'
+    }
 
     return <Container boxShadow='xs' maxW='full'>
         <Container maxW='6xl'>
             <Flex py='2.5' alignItems='center' justifyContent='space-between'>
-                <Text fontWeight='bold' fontSize='2xl' color='twitter.500' className='test'> <span style={{ display: "flex" }}>
-                    <Text mr='1'>
-                        TWOTTER
-                    </Text>
-                    <Image src={Twotterlogo} boxSize='40px' alt="twotter_logo" />
-                </span></Text>
+                <Text cursor='pointer' fontWeight='bold' fontSize='2xl' color='facebook.500' className='test'
+                    onClick={() => navigate(`${link}`)}
+                >
+                    SOSMED
+                </Text>
                 {
                     props.loading ?
                         <Spinner
@@ -43,17 +51,41 @@ const NavbarComp = (props) => {
                                     top="1rem"
                                     right="1rem"
                                     align="center"
+
                                 >
                                     {/* Desktop */}
                                     <Flex
                                         display={{ base: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
                                     >
-                                        <Menu>
-                                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} color='white' colorScheme='twitter'>
-                                                Welcome, {username}
+                                        <Flex alignItems='center' mr='2' gap='1'>
+                                            <Text color='blue.500' fontSize='xl'>{dataStatus == 'verified' ? <MdOutlineVerified /> : <></>}</Text>
+                                            <Text> {dataStatus}</Text>
+                                        </Flex>
+                                        <Menu >
+                                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} color='white' colorScheme='facebook' rounded="full">
+                                                {username}
                                             </MenuButton>
-                                            <MenuList>
-                                                <MenuItem onClick={() => dispatch(logoutAction())}>Logout</MenuItem>
+
+                                            <MenuList position='relative' zIndex='99999'>
+                                                {
+                                                    dataStatus == 'unverified' ?
+                                                        <Tooltip label='on going'>
+                                                            <div>
+                                                                <MenuItem>
+                                                                    Reverification
+                                                                </MenuItem>
+                                                            </div>
+                                                        </Tooltip>
+                                                        :
+                                                        <>
+                                                        </>
+                                                }
+                                                <MenuItem onClick={() => {
+                                                    dispatch(logoutUserAction());
+                                                    navigate('/', { replace: true });
+                                                }}>
+                                                    Logout
+                                                </MenuItem>
                                             </MenuList>
                                         </Menu>
                                     </Flex>
@@ -61,6 +93,7 @@ const NavbarComp = (props) => {
                                     <IconButton
                                         aria-label="Open Menu"
                                         size="md"
+                                        bgColor='transparent'
                                         mr={-5}
                                         icon={
                                             <FiMenu />
@@ -73,7 +106,7 @@ const NavbarComp = (props) => {
                                 <Flex
                                     w='100vw'
                                     display={display}
-                                    bgColor="gray.50"
+                                    bgColor="gray.100"
                                     zIndex={20}
                                     h="28vh"
                                     pos="fixed"
@@ -85,7 +118,7 @@ const NavbarComp = (props) => {
                                     <Flex justify="flex-end">
                                         <IconButton
                                             mt={2}
-                                            mr={8}
+                                            mr={3}
                                             aria-label="Open Menu"
                                             size="md"
                                             icon={
@@ -102,24 +135,38 @@ const NavbarComp = (props) => {
                                         <Button
                                             type='button'
                                             variant="ghost"
+                                            aria-label="Profile"
+                                            w="100%"
+                                            my={2}
+                                            onClick={() => {
+                                                navigate('/landing');
+                                            }
+                                            }
+                                        >Home</Button>
+                                        <Button
+                                            type='button'
+                                            variant="ghost"
                                             aria-label="Login"
                                             as={Button}
                                             my={2}
                                             w="100%"
-                                        >Welcome, {username}</Button>
-                                        <Button
-                                            type='button'
-                                            variant="ghost"
-                                            aria-label="Profile"
-                                            w="100%"
+                                            onClick={() => {
+                                                navigate('/myprofile');
+                                            }
+                                            }
                                         >Profile</Button>
+
                                         <Button
                                             type='button'
                                             variant="ghost"
                                             aria-label="Logout"
                                             w="100%"
                                             my={2}
-                                            onClick={() => dispatch(logoutAction())}
+                                            onClick={() => {
+                                                dispatch(logoutUserAction());
+                                                navigate('/', { replace: true });
+                                            }
+                                            }
                                         >Logout</Button>
                                         {/* </ButtonGroup> */}
 
@@ -139,9 +186,9 @@ const NavbarComp = (props) => {
                                         display={{ base: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
                                     >
                                         <ButtonGroup>
-                                            <Button type='button' colorScheme='twitter' onClick={() => navigate('/')}>Login</Button>
+                                            <Button type='button' colorScheme='facebook' onClick={() => navigate('/')}>Login</Button>
                                             {/* cara tampilin suggestion colorScheme itu delete smua sampe '' dibuat ulang nanti muncul */}
-                                            <Button type='button' variant='outline' colorScheme='twitter' onClick={() => navigate('/regis')}>Register</Button>
+                                            <Button type='button' variant='outline' colorScheme='facebook' onClick={() => navigate('/register')}>Register</Button>
                                         </ButtonGroup>
                                     </Flex>
                                     {/* Mobile */}

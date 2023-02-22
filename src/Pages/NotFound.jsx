@@ -2,12 +2,27 @@ import React from 'react';
 import { Box, Heading, Text, Button, Flex } from '@chakra-ui/react';
 import Loading from '../Components/Loading';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 export default function NotFound(props) {
     const navigate = useNavigate();
+    const [loading, setLoading] = React.useState(true);
+    const dataUsername = useSelector((state) => state.auth.username)
+    React.useEffect(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2700); //millisecond
+      }, [])
 
-    if (props.loading) {
+      let link = '';
+      if(dataUsername){
+        link = '/landing'
+      }else {
+        link = '/';
+      }
+
+    if (loading) {
         return <Text><Loading /></Text>
     } else {
         return (
@@ -23,7 +38,7 @@ export default function NotFound(props) {
                         as="h2"
                         size="4xl"
                         // bgGradient="linear(to-r, teal.400, teal.600)"
-                        bg='twitter.500'
+                        bg='facebook.500'
                         backgroundClip="text">
                         404
                     </Heading>
@@ -35,11 +50,11 @@ export default function NotFound(props) {
                     </Text>
 
                     <Button
-                        colorScheme="twitter"
+                        colorScheme="facebook"
                         // bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
                         color="white"
                         variant="solid"
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate(`${link}`)}
                         >
                         Go to Home
                     </Button>

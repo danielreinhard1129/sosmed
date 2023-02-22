@@ -3,8 +3,9 @@ const INITIAL_STATE = {
     username: '',
     email: '',
     status: '',
-    imgProfile: '',
-    role: ''
+    imgprofile: '',
+    role: null,
+    imgbanner: ''
 }
 
 export const authReducer = (state = INITIAL_STATE, action) => {

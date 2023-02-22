@@ -5,12 +5,10 @@ import {
     Icon,
     Link,
     Menu,
-    MenuButton,
-    MenuList
+    MenuButton
 } from '@chakra-ui/react'
-// import NavHoverBox from './NavHoverBox'
 
-export default function NavItem({ icon, title, description, active, navSize }) {
+export default function NavItem({ icon, title, active, navSize }) {
     return (
         <Flex
             mt={30}
@@ -23,9 +21,10 @@ export default function NavItem({ icon, title, description, active, navSize }) {
                     backgroundColor={active && "#1da1f3"}
                     p={3}
                     borderRadius={8}
-                    _hover={{ textDecor: 'none', 
-                    // backgroundColor: "#1da1f3",
-                     color: "#1da1f3" }}
+                    _hover={{
+                        textDecor: 'none',
+                        color: "facebook.500"
+                    }}
                     w={navSize == "large" && "100%"}
                 >
                     <MenuButton w="100%">
@@ -35,15 +34,6 @@ export default function NavItem({ icon, title, description, active, navSize }) {
                         </Flex>
                     </MenuButton>
                 </Link>
-                {/* <MenuList
-                    py={0}
-                    border="none"
-                    w={200}
-                    h={200}
-                    ml={5}
-                > */}
-                    {/* <NavHoverBox title={title} icon={icon} description={description} /> */}
-                {/* </MenuList> */}
             </Menu>
         </Flex>
     )

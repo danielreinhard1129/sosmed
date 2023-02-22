@@ -13,7 +13,10 @@ import React from 'react';
 import LandingPage from './Pages/Landing';
 import OtherProfile from './Pages/OtherProfile';
 import Verification from './Pages/Verification';
-import Percobaan from './Pages/Percobaan';
+
+import ForgetPassword from './Pages/ForgetPassword';
+import NewPassword from './Pages/NewPassword';
+import MyProfile from './Pages/MyProfile';
 
 function App() {
   // 1. Render 1
@@ -43,19 +46,18 @@ function App() {
           :
           // jika sebelum login dia shownya register sama login
           <>
-            <Route path='/regis' element={<RegisPage loading={loading} />} />
+            <Route path='/register' element={<RegisPage loading={loading} />} />
             <Route path='/' element={<LoginPage loading={loading} />} />
           </>
       }
       {/* kalo uda ada role dia baru bisa akses landing sama other profiles */}
-      <Route path='/landing' element={<LandingPage loading={loading}/>} /> 
-      <Route path='/other/:id' element={<OtherProfile loading={loading}/>} />
-      <Route path='*' element={<NotFound loading={loading}/>} />
-      <Route path='/verification/:token' element={<Verification  loading={loading} />} />
-
-      {/* buat nyoba */}
-      <Route path='/percobaan' element={<Percobaan loading={loading} />} />
-
+      <Route path='/landing' element={<LandingPage loading={loading} />} />
+      <Route path='/other/:username' element={<OtherProfile loading={loading} />} />
+      <Route path='*' element={<NotFound loading={loading} />} />
+      <Route path='/forgot' element={<ForgetPassword />} />
+      <Route path='/newpassword/:token' element={<NewPassword />} />
+      <Route path='/verify/:token' element={<Verification loading={loading} />} />
+      <Route path='/myprofile' element={<MyProfile keeplogin={() => dispatch(mwKeepLogin())} />} />
     </Routes>
   </>;
 }

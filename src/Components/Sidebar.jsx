@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
 import {
     Flex,
-    Text,
-    IconButton,
-    Divider,
-    Avatar,
-    Heading,
     Button,
-    useMediaQuery
+    useMediaQuery,
+    Tooltip,
+    Box
 } from '@chakra-ui/react'
 import {
-    FiMenu,
     FiHome,
     FiUser,
-    FiSettings,
     FiBell,
     FiMail,
-    FiBookmark
 } from 'react-icons/fi'
-import { RiHashtag } from 'react-icons/ri'
 import NavItem from './NavItem'
-import { CgMoreO } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
+
 
 export default function Sidebar() {
     // const [navSize, changeNavSize] = useState("large")
@@ -49,51 +43,43 @@ export default function Sidebar() {
                     alignItems={navSize == "small" ? "center" : "flex-start"}
                     as="nav"
                     mt={5}
+                    pr="2"
                 >
-                    {/* hamburger navbar */}
-                    {/* <IconButton
-                    background="none"
-                    mt={5}
-                    _hover={{ background: 'none' }}
-                    icon={<FiMenu />}
-                    onClick={() => {
-                        if (navSize == "small")
-                            changeNavSize("large")
-                        else
-                            changeNavSize("small")
-                    }}
-                /> */}
-                    <NavItem navSize={navSize} icon={FiHome} title="Home" />
-                    <NavItem navSize={navSize} icon={RiHashtag} title="Explore" />
-                    <NavItem navSize={navSize} icon={FiBell} title="Notifications" />
-                    <NavItem navSize={navSize} icon={FiMail} title="Messages" />
-                    <NavItem navSize={navSize} icon={FiBookmark} title="Bookmarks" />
-                    <NavItem navSize={navSize} icon={FiUser} title="Profile" />
-                    <NavItem navSize={navSize} icon={CgMoreO} title="More" />
-                    <Button type='button' colorScheme='twitter'
-                        marginTop="5vh"
-                        marginBottom="5vh"
-                        borderRadius={navSize == "small" ? "15px" : "15px"}
-                        w={navSize == "small" ? "75px" : "180px"}
-                        display={{ base: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
-                    >Tweet</Button>
+                    <Link to={'/landing'}>
+                        <NavItem navSize={navSize} icon={FiHome} title="Home" />
+                    </Link>
+                    <Tooltip label="on going">
+                        <div>
+                            <NavItem navSize={navSize} icon={FiBell} title="Notifications" />
+                        </div>
+                    </Tooltip>
+                    <Tooltip label="on going">
+                        <div>
+                            <NavItem navSize={navSize} icon={FiMail} title="Messages" />
+                        </div>
+                    </Tooltip>
+                    <Link to={'/myprofile'}>
+                        <NavItem navSize={navSize} icon={FiUser} title="Profile" />
+                    </Link>
+                    <Box w='full'>
+                        <Tooltip label='on going'>
+                            <div>
+                                <Button type='button' colorScheme='facebook'
+                                    marginTop="5vh"
+                                    marginBottom="5vh"
+                                    // borderRadius={navSize == "small" ? "15px" : "15px"}
+                                    rounded="full"
+                                    // w={navSize == "small" ? "75px" : "180px"}
+                                    w="full"
 
-                </Flex>
-                <Flex
-                    // p="5%"
-                    flexDir="column"
-                    w="100%"
-                    alignItems={navSize == "small" ? "center" : "flex-start"}
-                    display={{ base: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
-                >
-                    <Divider display={navSize == "small" ? "none" : "flex"} />
-                    <Flex mt={4} align="center">
-                        <Avatar size="sm" src="avatar-1.jpg" />
-                        <Flex flexDir="column" ml={4} display={navSize == "small" ? "none" : "flex"}>
-                            <Heading as="h3" size="sm">Username</Heading>
-                            <Text color="gray">@username1</Text>
-                        </Flex>
-                    </Flex>
+
+                                    display={{ base: 'none', sm: 'none', md: 'flex' }}
+                                    fontSize={{ md: 'sm', lg: 'lg' }}
+                                >Trending</Button>
+                            </div>
+                        </Tooltip>
+                    </Box>
+
                 </Flex>
             </Flex>
         </Flex>

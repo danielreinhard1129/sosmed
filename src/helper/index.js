@@ -8,6 +8,3 @@ export const checkEmail = (email) => {
 };
 
 export const API_URL = "http://localhost:2000";
-
-
-//biar ga panjang di yang register

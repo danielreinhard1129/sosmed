@@ -6,80 +6,135 @@ import {
   HStack,
   Flex,
   IconButton,
-  Spacer,
   LinkBox,
-  LinkOverlay,
+  Tooltip,
 } from '@chakra-ui/react';
 import {
   AiOutlineMessage,
   AiOutlineHeart,
   AiOutlineShareAlt,
-  AiOutlineRetweet
+  AiFillHeart
 } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../helper';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 
 //Tweets -> Quack 
 
-function Tweets() {
+function Tweets(props) {
+  const today = new Date().toISOString().split('T')[0]
+  const dataUsername = useSelector((state) => state.auth.username);
+  const navigate = useNavigate();
+  const tgl = () => {
+    if (today == props.date.split('T')[0]) {
+      return <Text fontWeight="normal" color="gray.500">
+        today
+      </Text>
+    } else {
+      let tgl = new Date(today) - new Date(props.date.split('T')[0])
+      let day = Math.floor(tgl / 86400000)
+      console.log(tgl)
+      if (day == 1) {
+        return <Text fontWeight="normal" color="gray.500">
+          yesterday
+        </Text>
+      } else {
+        return <Text fontWeight="normal" color="gray.500">
+          {day} days ago
+        </Text>
+      }
+    }
+  }
+
+  let filterLike = props.likes.filter((val) => {
+    return val.user.username == dataUsername && val.isLiked
+  });
+  console.log(filterLike)
+
+  const btnLike = async () => {
+    try {
+      let token = localStorage.getItem('sosmed_login');
+      let post = await axios.post(`${API_URL}/tweet/like`, {
+        tweetId: props.tweetId
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      props.get();
+      console.log("postttt btnlike", post)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  let link = ''
+  if(props.username == dataUsername){
+    link = '/myprofile'
+  } else {
+    link = `/other/${props.username}`
+  }
+
+
   return (
-    <LinkBox  borderBottom='1px' borderColor='gray.200'>
-      <HStack align="start" my="5" p='2' >
-        <Avatar src="avatar-1.jpg" />
+    <LinkBox borderBottom='1px' borderColor='gray.200' w='full'>
+      <HStack align="start" my="2" p='4'>
+        <Avatar bgColor='gray.400' cursor='pointer' src={`${API_URL}${props.imgprofile}`} onClick={() => navigate(`${link}`)}/>
         {/* <Avatar as={Link} to="/username" name="username" src="" /> */}
-        <Box>
-          <HStack as={Link} to="/username">
-            <Text fontWeight="bold">Username </Text>
-            <Text fontWeight="normal" color="gray.500">
-              @username1
-            </Text>
-            <Text fontWeight="normal" color="gray.500">
-              · 20min
-            </Text>
+        <Box paddingLeft='6'>
+          <HStack cursor='pointer' onClick={() => navigate(`${link}`)}>
+            <Text fontWeight="bold">{props.username}</Text>
+            {tgl()}
           </HStack>
-          <Flex w='full'>
-            <Text as={Link} to="/username/status/quackid" >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A quo incidunt nemo culpa commodi nulla. Dicta, dolorem? Optio nesciunt minus eaque aspernatur! Voluptas, ut voluptatem qui accusantium dolores vero cupiditate!
-              corrupti suscipit doloribus et amet voluptates.
+          <Flex w='full' >
+            <Text>
+              {props.tweet}
             </Text>
           </Flex>
           <Flex mt="2" w='full' justify='space-between' pr='8'>
+            <Tooltip label="on going">
+              <div>
+                <Flex align='center'>
+                  <IconButton
+                    icon={<AiOutlineMessage size="20" />}
+                    aria-label="Write comment"
+                    variant="ghost"
+                    as={Link}
+                    to="compose/quack"
+                  />
+                  <Text>1</Text>
+                </Flex>
+              </div>
+            </Tooltip>
+
             <Flex align='center'>
               <IconButton
-                icon={<AiOutlineMessage size="20" />}
-                aria-label="Write comment"
-                variant="ghost"
-                as={Link}
-                to="compose/quack"
-              />
-              <Text>1</Text>
-            </Flex>
-            <Flex align='center'>
-              <IconButton
-                icon={<AiOutlineRetweet size="20" />}
-                aria-label="Write comment"
-                variant="ghost"
-                as={Link}
-                to="compose/quack"
-              />
-              <Text>1</Text>
-            </Flex>
-            <Flex align='center'>
-              <IconButton
-                icon={<AiOutlineHeart size="20" />}
+                icon={filterLike.length > 0 ? <AiFillHeart size="20" /> : <AiOutlineHeart size="20" />}
                 aria-label="Like"
                 variant="ghost"
+                onClick={btnLike}
+                type='button'
+
               />
-              <Text>1</Text>
+              <Text>{props.countlike}</Text>
             </Flex>
-            <Flex align='center'>
-              <IconButton
-                icon={<AiOutlineShareAlt size="20" />}
-                aria-label="Share"
-                variant="ghost"
-              />
-              <Text>1</Text>
-            </Flex>
-            </Flex>
+
+            <Tooltip label="on going">
+              <div>
+                <Flex align='center'>
+                  <IconButton
+                    icon={<AiOutlineShareAlt size="20" />}
+                    aria-label="Share"
+                    variant="ghost"
+                  />
+                  <Text>1</Text>
+                </Flex>
+              </div>
+            </Tooltip>
+          </Flex>
         </Box>
       </HStack>
     </LinkBox>
