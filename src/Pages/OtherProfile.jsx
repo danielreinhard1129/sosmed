@@ -91,18 +91,18 @@ const OtherProfile = (props) => {
                             <Flex w='full' justify='space-between' m>
                                 <Box>
                                     <Flex alignItems='center' gap='1'>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }} fontWeight='bold'>@{dataUser?.username}</Text>
-                                        <Text color='blue.500' fontSize='xl'>{dataUser.statusId == 2 ? <MdOutlineVerified /> : <></>}</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }} fontWeight='bold'>@{dataUser?.username}</Text>
+                                        <Text color='white' fontSize='xl'>{dataUser.statusId == 2 ? <MdOutlineVerified /> : <></>}</Text>
                                     </Flex>
-                                    <Text fontSize={{ base: 'sm', md: 'md' }}>{dataUser?.email}</Text>
+                                    <Text color={'white'} fontSize={{ base: 'sm', md: 'md' }}>{dataUser?.email}</Text>
                                     <Flex gap='3' my='5'>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }}>100 Follower</Text>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }}>200 Following</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }}>100 Follower</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }}>200 Following</Text>
                                     </Flex>
                                 </Box>
                                 <Tooltip label='on going'>
                                     <div>
-                                        <Button colorScheme='facebook' rounded='full'
+                                        <Button colorScheme='twitter' rounded='full'
                                             size={{ base: 'sm', md: 'md' }}
                                         >Follow</Button>
                                     </div>

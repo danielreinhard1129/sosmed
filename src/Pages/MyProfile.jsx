@@ -30,7 +30,7 @@ function MyProfile(props) {
     const modalBanner = useDisclosure()
     const dataImgProfile = useSelector((state) => state.auth.imgprofile)
     const dataBanner = useSelector((state) => state.auth.imgbanner)
-    console.log("databanner",dataBanner)
+    console.log("databanner", dataBanner)
 
 
 
@@ -96,7 +96,7 @@ function MyProfile(props) {
     const printUserTweet = () => {
         return tweetUser.map((val, idx) => {
             return <Tweets tweetId={val.id} tweet={val.tweet} username={val.user.username}
-                date={val.createdAt} likes={val.likes} countlike={val.countLike} get={getUserTweet} imgprofile={val.user.imgprofile}/>
+                date={val.createdAt} likes={val.likes} countlike={val.countLike} get={getUserTweet} imgprofile={val.user.imgprofile} />
         })
     }
 
@@ -188,14 +188,16 @@ function MyProfile(props) {
                         <Loading />
                     </Box>
                     :
-                    <Box flex='2'>
-                        <Box pos='relative' w='full' zIndex={'-9999'}>
+                    <Box flex='2' minH={'92.5vh'}>
+                        <Box w='full'>
                             <Image w='full' bgColor='gray.100' maxH='300px' src={`${API_URL}${dataBanner}`} alt='Dan Abramov' />
-                            <IconButton type='button' pos='absolute' top='0' right='0' bgColor='transparent'
-                                onClick={() => inputFileBanner.current.click()}>
-                                <AiFillCamera size='18px' color='white'/>
-                            </IconButton>
                             <input type='file' id='file' ref={inputFileBanner} style={{ display: 'none' }} onChange={onChangeFileBanner}></input>
+                        </Box>
+                        <Box textAlign={'right'} position={'relative'} top={'-10'}>
+                            <IconButton type='button' top='0' right='0' bgColor='transparent'
+                                onClick={() => inputFileBanner.current.click()}>
+                                <AiFillCamera size='18px' color='white' />
+                            </IconButton>
                         </Box>
                         {/* Modal for change img banner */}
                         <Modal isOpen={modalBanner.isOpen} onClose={modalBanner.onClose}>
@@ -220,12 +222,12 @@ function MyProfile(props) {
                         </Modal>
 
                         <Box px='8' pb='8' shadow='xl' roundedBottom='3xl'>
-                            <Box pos='relative' w='fit-content'>
+                            <Box pos='relative' top={'-10'} w='fit-content'>
                                 <Avatar
                                     size='xl'
                                     name='Prosper Otemuyiwa'
                                     src={dataImgProfile ? `${API_URL}${dataImgProfile}` : 'https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-businessman-avatar-icon-flat-style-png-image_1917273.jpg'}
-                                    mt='-16' mb='3'
+                                    mt='-16'
                                     bgColor='gray.200'
                                 />
                                 <IconButton type='button' variant='solid' rounded='full' pos='absolute' right='0'
@@ -256,23 +258,23 @@ function MyProfile(props) {
                                 </ModalContent>
                             </Modal>
                             {' '}
-                            <Flex w='full' justify='space-between' m>
+                            <Flex w='full' justify='space-between' mt={'-5'}>
                                 <Box>
                                     <Flex alignItems='center' gap='1'>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }} fontWeight='bold'>@{dataUsername}</Text>
-                                        <Text color='blue.500' fontSize='xl'>{dataStatus == 'verified' ? <MdOutlineVerified /> : <></>}</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }} fontWeight='bold'>@{dataUsername}</Text>
+                                        <Text color='white' fontSize='xl'>{dataStatus == 'verified' ? <MdOutlineVerified /> : <></>}</Text>
                                     </Flex>
-                                    <Text fontSize={{ base: 'sm', md: 'md' }}>{dataEmail}</Text>
+                                    <Text color={'white'} fontSize={{ base: 'sm', md: 'md' }}>{dataEmail}</Text>
                                     <Flex gap='3' my='5'>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }}>100 Follower</Text>
-                                        <Text fontSize={{ base: 'lg', md: 'xl' }}>200 Following</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }}>100 Follower</Text>
+                                        <Text color={'white'} fontSize={{ base: 'lg', md: 'xl' }}>200 Following</Text>
                                     </Flex>
                                 </Box>
                                 <Tooltip label='on going'>
                                     <div>
-                                        <Button colorScheme='facebook' rounded='full'
+                                        <Button colorScheme='twitter' rounded='full'
                                             size={{ base: 'sm', md: 'md' }}
-                                        >Follow</Button>
+                                        >Edit</Button>
                                     </div>
                                 </Tooltip>
                             </Flex>
@@ -282,11 +284,12 @@ function MyProfile(props) {
                                     <Textarea value={textArea} resize='none' rows='3' placeholder="What's happening?"
                                         size="lg"
                                         maxLength={150}
+                                        color={'white'}
                                         onChange={(e) => {
                                             setTextArea(e.target.value);
                                             setLengthTextArea(e.target.value.length);
                                         }} />
-                                    <Text align='right'>{lengthTextArea}/150</Text>
+                                    <Text color={'white'} align='right'>{lengthTextArea}/150</Text>
                                     <Flex gap='3'>
                                         <Tooltip label='on going'>
                                             <div>
@@ -295,6 +298,7 @@ function MyProfile(props) {
                                                     icon={<IoImageOutline size="20" />}
                                                     aria-label="upload image"
                                                     mr="1"
+                                                    color={'white'}
                                                 />
                                             </div>
                                         </Tooltip>
@@ -305,6 +309,7 @@ function MyProfile(props) {
                                                     icon={<VscSmiley size="20" />}
                                                     aria-label="upload image"
                                                     mr="1"
+                                                    color={'white'}
                                                 />
                                             </div>
                                         </Tooltip>
@@ -315,11 +320,12 @@ function MyProfile(props) {
                                                     icon={<VscCalendar size="20" />}
                                                     aria-label="upload image"
                                                     mr="1"
+                                                    color={'white'}
                                                 />
                                             </div>
                                         </Tooltip>
                                         <Spacer />
-                                        <Button alignSelf='flex-end' colorScheme='facebook' rounded='full'
+                                        <Button alignSelf='flex-end' colorScheme='twitter' rounded='full'
                                             onClick={btnTweet} size={{ base: 'sm', md: 'md' }}
                                         >Send</Button>
                                     </Flex>

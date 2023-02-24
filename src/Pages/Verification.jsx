@@ -3,7 +3,8 @@ import {
   Button,
   Flex,
   Stack,
-  Text
+  Text,
+  Box
 } from '@chakra-ui/react';
 import Loading from '../Components/Loading';
 import { useParams, useNavigate } from 'react-router-dom'
@@ -33,8 +34,8 @@ const Verification = (props) => {
           status: 'success',
           duration: 2500,
           isClosable: true,
-      });
-      navigate('/landing')
+        });
+        navigate('/landing')
       }
     } catch (error) {
       console.log(error);
@@ -46,48 +47,53 @@ const Verification = (props) => {
     return <Text><Loading /></Text>
   } else {
     return (
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg='gray.50'>
-          
-        <Stack
-          spacing={4}
-          w={'full'}
-          maxW={'sm'}
-          bg='white'
-          boxShadow={'md'}
-          p={6}
-          my={10}
-          mx='5'>
-          <Center>
-            <Heading lineHeight={1.1} fontSize={{ base: '2xl', md: '4xl' }}>
-              Verify your Account
-            </Heading>
-          </Center>
-          <Center
-            fontSize={{ base: 'sm', sm: 'md' }}
-            color='gray.800'
-          >
-            Click button below to verify your account
-          </Center>
-          <Stack spacing={6}>
-            <Button
-              bg={'facebook.500'}
-              rounded='full'
-              color={'white'}
-              _hover={{
-                bg: 'facebook.600',
-              }}
-              type='button'
-              onClick={onBtnVerify}
+      <Box minH={'92.5vh'}>
+
+
+        <Flex
+          // minH={'92.5vh'}
+          // align={'center'}
+          mt={20}
+          justify={'center'}
+          bgColor={'#15202b'}>
+
+          <Stack
+            spacing={4}
+            w={'full'}
+            maxW={'sm'}
+            bg='#15202b'
+            shadow={'dark-lg'}
+            p={6}
+            my={10}
+            mx='5'>
+            <Center>
+              <Heading color={'white'} lineHeight={1.1} fontSize={{ base: '2xl', md: '4xl' }}>
+                Verify your Account
+              </Heading>
+            </Center>
+            <Center
+              fontSize={{ base: 'sm', sm: 'md' }}
+              color='white'
             >
-              Verify
-            </Button>
+              Click button below to verify your account
+            </Center>
+            <Stack spacing={6}>
+              <Button
+                bg={'twitter.500'}
+                rounded='full'
+                color={'white'}
+                _hover={{
+                  bg: 'facebook.600',
+                }}
+                type='button'
+                onClick={onBtnVerify}
+              >
+                Verify
+              </Button>
+            </Stack>
           </Stack>
-        </Stack>
-      </Flex>
+        </Flex>
+      </Box>
     );
   }
 };

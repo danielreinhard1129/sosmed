@@ -43,7 +43,7 @@ function LandingPage() {
     const printAlltweet = () => {
         return tweetList.map((val, idx) => {
             return <Tweets tweetId={val.id} tweet={val.tweet} username={val.user.username} date={val.createdAt}
-                likes={val.likes} get={getAllTweet} countlike={val.countLike} imgprofile={val.user.imgprofile}/>
+                likes={val.likes} get={getAllTweet} countlike={val.countLike} imgprofile={val.user.imgprofile} />
         })
     }
 
@@ -65,7 +65,7 @@ function LandingPage() {
                     <Flex w='full'>
                         <Avatar bgColor='gray.400' size="sm" src={`${API_URL}${val.imgprofile}`} marginTop='3' marginRight='1' />
                         <Box>
-                            <Heading as="h3" size="sm" marginTop="1vh" >{val.username}</Heading>
+                            <Heading color={'white'} as="h3" size="sm" marginTop="1vh" >{val.username}</Heading>
                             <Text color="gray">@{val.username}</Text>
                         </Box>
 
@@ -75,10 +75,10 @@ function LandingPage() {
                     <Tooltip label='on going'>
                         <div >
                             <Box>
-                                <Button type='button' colorScheme='facebook' marginTop="1vh"
+                                <Button type='button' colorScheme={'twitter'} marginTop="1vh"
                                     borderRadius="30px"
                                     variant='outline'
-                                    zIndex='-999'
+                                    position={'unset'}
                                 >Follow</Button>
                             </Box>
                         </div>
@@ -91,6 +91,7 @@ function LandingPage() {
 
     return <Container
         maxW={{ base: 'xl', sm: '2xl', md: '4xl', lg: '6xl' }}
+        bgColor={'#15202b'}
     >
         <Flex >
             {/* Left Side Bar / User Menu */}
@@ -108,18 +109,18 @@ function LandingPage() {
                     </Box>
                     :
                     <>
-                        <Box flex='2' borderLeft='1px' borderRight='1px' borderColor='gray.200'>
-                            <Stack textAlign='center' border='0px' mt='9' >
-                                < Feeds getalltweets={getAllTweet} />
-                            </Stack>
-                            <VStack border='0px' overflow='auto' h='100vh' sx={{ '::-webkit-scrollbar': { display: 'none' } }}>
-                                {printAlltweet()}
-                            </VStack>
+                        <Box flex='2' shadow={'2xl'}  maxH={'92.5vh'} minH={'92.5vh'} overflow='auto' sx={{ '::-webkit-scrollbar': { display: 'none' } }}>
+                                <Stack textAlign='center' border='0px' mt='9' >
+                                    < Feeds getalltweets={getAllTweet} />
+                                </Stack>
+                                <VStack >
+                                    {printAlltweet()}
+                                </VStack>
                         </Box>
-                        {/* Right content / Who to Follow */}
-                        <Box flex='1' textAlign='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
+                            {/* Right content / Who to Follow */}
+                        <Box flex='1' h='92.5vh' textAlign='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }} >
                             <Box display='flex' my='3' borderBottom='1px' borderColor='gray.200'>
-                                <Text textAlign='left' fontWeight="bold" mt='2' ml='8' mb="2">
+                                <Text color={'white'} textAlign='left' fontWeight="bold" mt='2' ml='8' mb="2">
                                     Who to follow
                                 </Text>
                             </Box>

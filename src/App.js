@@ -17,6 +17,7 @@ import Verification from './Pages/Verification';
 import ForgetPassword from './Pages/ForgetPassword';
 import NewPassword from './Pages/NewPassword';
 import MyProfile from './Pages/MyProfile';
+import { Box } from '@chakra-ui/react';
 
 function App() {
   // 1. Render 1
@@ -37,7 +38,7 @@ function App() {
   }, [])
 
   // 2. Render 2
-  return <>
+  return <Box bgColor={'#15202b'}>
     <NavbarComp loading={loading} />
     <Routes>
       {
@@ -59,7 +60,7 @@ function App() {
       <Route path='/verify/:token' element={<Verification loading={loading} />} />
       <Route path='/myprofile' element={<MyProfile keeplogin={() => dispatch(mwKeepLogin())} />} />
     </Routes>
-  </>;
+  </Box>;
 }
 
 export default App;

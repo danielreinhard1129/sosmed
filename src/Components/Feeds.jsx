@@ -86,6 +86,7 @@ function Feeds(props) {
           overflow="hidden"
           rows='4'
           maxLength={150}
+          color={'white'}
           value={textArea}
           onChange={(e) => {
             setTextArea(e.target.value);
@@ -101,6 +102,7 @@ function Feeds(props) {
                 icon={<IoImageOutline size="20" />}
                 aria-label="upload image"
                 mr="1"
+                color={'white'}
               />
             </div>
           </Tooltip>
@@ -111,6 +113,7 @@ function Feeds(props) {
                 icon={<VscSmiley size="20" />}
                 aria-label="upload image"
                 mr="1"
+                color={'white'}
               />
             </div>
           </Tooltip>
@@ -121,11 +124,12 @@ function Feeds(props) {
                 icon={<VscCalendar size="20" />}
                 aria-label="upload image"
                 mr="1"
+                color={'white'}
               />
             </div>
           </Tooltip>
           <Spacer />
-          <Button alignSelf="flex-end" colorScheme="facebook"
+          <Button alignSelf="flex-end" colorScheme="twitter"
             borderRadius="30px"
             disabled
             onClick={btnTweet}>

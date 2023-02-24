@@ -25,7 +25,7 @@ const RegisPage = (props) => {
                 username: username,
                 email: email,
                 password: password,
-                confirmpassword:confirmationPassword
+                confirmpassword: confirmationPassword
             }
             );
             console.log(res);
@@ -40,7 +40,7 @@ const RegisPage = (props) => {
                 setTimeout(() => {
                     navigate("/")
                 }, 2000)
-            } 
+            }
         } catch (error) {
             console.log(error.response);
             alert(error.response.data.message);
@@ -59,56 +59,56 @@ const RegisPage = (props) => {
         return <Text><Loading /></Text>
     } else {
         return <Flex
-            minH={'100vh'}
+            minH={'92.5vh'}
             align={'center'}
             justify={'center'}
-            bg={'gray.50'}
+            bgColor={'#15202b'}
         >
             {/* <Container maxW='4xl'> */}
-                <Stack spacing={8} mx={'auto'} maxW={['md','lg']} py={12} px={6}>
-                    <Box m='auto' my='26' py='6' px='8' boxShadow='md' bg='white'>
-                        <Text fontSize={{base: '3xl', md: '4xl'}} fontWeight='bold' style={{ display: 'flex' }}>Register<Text fontSize={{base: '3xl', md: '4xl'}} fontWeight='bold' color='facebook.500' pl='2'>Sosmed</Text></Text>
-                        <div style={{ display: 'flex' }}>
-                            <Text>Already have an account ?</Text>
-                            <Button type='button' ml='1.5' variant='link' colorScheme='facebook' onClick={() => navigate('/')}>Login</Button>
-                        </div>
-                        <Stack spacing={4}>
-                            <FormControl>
-                                <FormInputLabel name='Username' type='text' onChange={(e) => setUsername(e.target.value)} placeholder='Type in your username' />
-                                <FormInputLabel name='Email address' type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
-                                <FormLabel>Password</FormLabel>
-                                    <InputGroup>
-                                        <Input type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
-                                        <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
-                                            {
-                                                visible == 'password' ?
-                                                    <ViewIcon /> :
-                                                    <ViewOffIcon />
-                                            }
-                                        </InputRightAddon>
-                                    </InputGroup>
-                                        {/* <Stack spacing={4}> */}
-                                <FormLabel mt={6}>Confirmation Password</FormLabel>
-                                <InputGroup>
-                                    <Input type={visible} onChange={(e) => setConfirmationPassword(e.target.value)} placeholder='Confirm your password' />
-                                    <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
-                                        {
-                                            visible == 'password' ?
-                                            <ViewIcon /> :
-                                            <ViewOffIcon />
-                                        }
-                                    </InputRightAddon>
-                                </InputGroup>
-                                        
-                            </FormControl>
-                            <Stack spacing={10} pt={2}>
-                                <Button my='4' width='full' type='button' colorScheme='facebook' rounded="full" onClick={onBtnRegis}>
-                                    Register
-                                </Button>
-                            </Stack>
+            <Stack spacing={8} mx={'auto'} maxW={['md', 'lg']} py={6} px={6} shadow={'dark-lg'}>
+                <Box m='auto' my='4' py='4' px='8' color={'white'}>
+                    <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' style={{ display: 'flex' }}>Register<Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' color='twitter.500' pl='2'>Sosmed</Text></Text>
+                    <div style={{ display: 'flex' }}>
+                        <Text>Already have an account ?</Text>
+                        <Button type='button' ml='1.5' variant='link' colorScheme='twitter' onClick={() => navigate('/')}>Login</Button>
+                    </div>
+                    <Stack spacing={4}>
+                        <FormControl>
+                            <FormInputLabel name='Username' type='text' onChange={(e) => setUsername(e.target.value)} placeholder='Type in your username' />
+                            <FormInputLabel name='Email address' type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
+                            <FormLabel>Password</FormLabel>
+                            <InputGroup>
+                                <Input type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
+                                <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
+                                    {
+                                        visible == 'password' ?
+                                            <ViewIcon color={'#15202b'} /> :
+                                            <ViewOffIcon color={'#15202b'} />
+                                    }
+                                </InputRightAddon>
+                            </InputGroup>
+                            {/* <Stack spacing={4}> */}
+                            <FormLabel mt={6}>Confirmation Password</FormLabel>
+                            <InputGroup>
+                                <Input type={visible} onChange={(e) => setConfirmationPassword(e.target.value)} placeholder='Confirm your password' />
+                                <InputRightAddon onClick={() => setVisible(visible == 'password' ? 'text' : 'password')}>
+                                    {
+                                        visible == 'password' ?
+                                            <ViewIcon color={'#15202b'} /> :
+                                            <ViewOffIcon color={'#15202b'} />
+                                    }
+                                </InputRightAddon>
+                            </InputGroup>
+
+                        </FormControl>
+                        <Stack spacing={10} pt={2}>
+                            <Button my='4' width='full' type='button' colorScheme='twitter' rounded="full" onClick={onBtnRegis}>
+                                Register
+                            </Button>
                         </Stack>
-                    </Box>
-                </Stack>
+                    </Stack>
+                </Box>
+            </Stack>
             {/* </Container> */}
         </Flex>
     }

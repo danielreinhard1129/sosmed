@@ -30,7 +30,7 @@ function Tweets(props) {
   const navigate = useNavigate();
   const tgl = () => {
     if (today == props.date.split('T')[0]) {
-      return <Text fontWeight="normal" color="gray.500">
+      return <Text fontWeight="normal" color={'white'}>
         today
       </Text>
     } else {
@@ -38,11 +38,11 @@ function Tweets(props) {
       let day = Math.floor(tgl / 86400000)
       console.log(tgl)
       if (day == 1) {
-        return <Text fontWeight="normal" color="gray.500">
+        return <Text fontWeight="normal" color={'white'}>
           yesterday
         </Text>
       } else {
-        return <Text fontWeight="normal" color="gray.500">
+        return <Text fontWeight="normal" color={'white'}>
           {day} days ago
         </Text>
       }
@@ -80,17 +80,17 @@ function Tweets(props) {
 
 
   return (
-    <LinkBox borderBottom='1px' borderColor='gray.200' w='full'>
+    <LinkBox shadow={'xl'} w='full'>
       <HStack align="start" my="2" p='4'>
         <Avatar bgColor='gray.400' cursor='pointer' src={`${API_URL}${props.imgprofile}`} onClick={() => navigate(`${link}`)}/>
         {/* <Avatar as={Link} to="/username" name="username" src="" /> */}
         <Box paddingLeft='6'>
           <HStack cursor='pointer' onClick={() => navigate(`${link}`)}>
-            <Text fontWeight="bold">{props.username}</Text>
+            <Text color={'white'} fontWeight="bold">{props.username}</Text>
             {tgl()}
           </HStack>
           <Flex w='full' >
-            <Text>
+            <Text color={'white'}>
               {props.tweet}
             </Text>
           </Flex>
@@ -103,9 +103,9 @@ function Tweets(props) {
                     aria-label="Write comment"
                     variant="ghost"
                     as={Link}
-                    to="compose/quack"
+                    color={'white'}
                   />
-                  <Text>1</Text>
+                  <Text color={'white'}>1</Text>
                 </Flex>
               </div>
             </Tooltip>
@@ -117,9 +117,10 @@ function Tweets(props) {
                 variant="ghost"
                 onClick={btnLike}
                 type='button'
+                color={'white'}
 
               />
-              <Text>{props.countlike}</Text>
+              <Text color={'white'}>{props.countlike}</Text>
             </Flex>
 
             <Tooltip label="on going">
@@ -129,8 +130,9 @@ function Tweets(props) {
                     icon={<AiOutlineShareAlt size="20" />}
                     aria-label="Share"
                     variant="ghost"
+                    color={'white'}
                   />
-                  <Text>1</Text>
+                  <Text color={'white'}>1</Text>
                 </Flex>
               </div>
             </Tooltip>

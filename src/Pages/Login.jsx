@@ -82,28 +82,28 @@ const LoginPage = (props) => {
         return <Text><Loading /></Text>
     } else {
         return <Flex
-            minH={'100vh'}
+            minH={'92.5vh'}
             align={'center'}
             justify={'center'}
-            bg={'gray.50'}
+            bgColor={'#15202b'}
         >
             {/* <Container maxW='4xl'> */}
-            <Stack spacing={8} mx={'auto'} maxW={['md', 'lg']} py={12} px={6}>
-                <Box m='auto' my='26' py='6' px='8' boxShadow='md' bg='white' >
-                    <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' style={{ display: 'flex' }}>Sign in<Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' color='facebook.500' pl='2'>Sosmed</Text></Text>
+            <Stack bgColor={'#15202b'} spacing={8} mx={'auto'} maxW={['md', 'lg']} py={12} px={6} shadow={'dark-lg'}>
+                <Box m='auto' my='4' py='4' px='8' bg='white' bgColor={'#15202b'}>
+                    <Text color={'white'} fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' style={{ display: 'flex' }}>Sign in<Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight='bold' color='twitter.500' pl='2'>Sosmed</Text></Text>
                     <Flex pt="2">
-                        <Text>Don't have an account?</Text>
-                        <Button type='button' ml='1.5' variant='link' colorScheme='facebook' onClick={() => navigate('/register')}>Register Now</Button>
+                        <Text color={'white'}>Don't have an account?</Text>
+                        <Button type='button' ml='1.5' variant='link' colorScheme='twitter' onClick={() => navigate('/register')}>Register Now</Button>
                     </Flex>
                     <FormControl my='6'>
-                        <FormLabel>Email address</FormLabel>
-                        <Input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
+                        <FormLabel color={'white'}>Email address</FormLabel>
+                        <Input color={'white'} type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
                         {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
                     </FormControl>
                     <FormControl my='6'>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel color={'white'}>Password</FormLabel>
                         <InputGroup>
-                            <Input type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
+                            <Input color={'white'} type={visible} onChange={(e) => setPassword(e.target.value)} placeholder='Type in your password' />
                             <InputRightAddon onClick={handleVisible}>
                                 {
                                     visible == 'password' ?
@@ -125,17 +125,17 @@ const LoginPage = (props) => {
                             direction={{ sm: 'row' }}
                             align={'start'}
                             justify={'space-between'}>
-                            <Checkbox>Remember me</Checkbox>
-                            <Link onClick={() => navigate('/forgot')} color={'facebook.500'}>Forgot password?</Link>
+                            <Checkbox color={'white'}>Remember me</Checkbox>
+                            <Link onClick={() => navigate('/forgot')} color={'twitter.500'}>Forgot password?</Link>
                         </Stack>
-                        <Button my='4' width='full' type='button' colorScheme='facebook' rounded="full" onClick={onBtnLogin}>
+                        <Button my='4' width='full' type='button' colorScheme='twitter' rounded="full" onClick={onBtnLogin}>
                             Login
                         </Button>
                     </Stack>
                     <Tooltip label="ongoing">
                         <div>
                             <Button mt='3' mb='4' width='full' variant='outline' type='button' rounded="full" onClick={() => navigate('/')}>
-                                <FcGoogle size={36} style={{ marginRight: '12px' }} /> <span> Sign in with Google</span>
+                                <FcGoogle size={36} style={{ marginRight: '12px' }} /> <span style={{color: 'white'}}> Sign in with Google</span>
                             </Button>
                         </div>
                     </Tooltip>

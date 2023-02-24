@@ -10,6 +10,7 @@ import {
 import { IoClose } from "react-icons/io5";
 import { useState } from 'react';
 import { MdOutlineVerified } from "react-icons/md";
+import sosmed from '../assets/sosmed.png';
 
 const NavbarComp = (props) => {
     const navigate = useNavigate();
@@ -26,14 +27,10 @@ const NavbarComp = (props) => {
         link = '/'
     }
 
-    return <Container boxShadow='xs' maxW='full'>
+    return <Container bgColor={'#15202b'} boxShadow='xs' maxW='full'>
         <Container maxW='6xl'>
             <Flex py='2.5' alignItems='center' justifyContent='space-between'>
-                <Text cursor='pointer' fontWeight='bold' fontSize='2xl' color='facebook.500' className='test'
-                    onClick={() => navigate(`${link}`)}
-                >
-                    SOSMED
-                </Text>
+                <Image src={sosmed} onClick={() => navigate(`${link}`)} w={'40'}></Image>
                 {
                     props.loading ?
                         <Spinner
@@ -58,15 +55,15 @@ const NavbarComp = (props) => {
                                         display={{ base: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
                                     >
                                         <Flex alignItems='center' mr='2' gap='1'>
-                                            <Text color='blue.500' fontSize='xl'>{dataStatus == 'verified' ? <MdOutlineVerified /> : <></>}</Text>
-                                            <Text> {dataStatus}</Text>
+                                            <Text color='white' fontSize='xl'>{dataStatus == 'verified' ? <MdOutlineVerified /> : <></>}</Text>
+                                            <Text color={'white'}> {dataStatus}</Text>
                                         </Flex>
-                                        <Menu >
-                                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} color='white' colorScheme='facebook' rounded="full">
+                                        <Menu pos={'relative'}>
+                                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} color='white' colorScheme='twitter' rounded="full">
                                                 {username}
                                             </MenuButton>
 
-                                            <MenuList position='relative' zIndex='99999'>
+                                            <MenuList zIndex='999'>
                                                 {
                                                     dataStatus == 'unverified' ?
                                                         <Tooltip label='on going'>
@@ -96,7 +93,7 @@ const NavbarComp = (props) => {
                                         bgColor='transparent'
                                         mr={-5}
                                         icon={
-                                            <FiMenu />
+                                            <FiMenu color='white'/>
                                         }
                                         onClick={() => changeDisplay('flex')}
                                         display={{ base: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
@@ -106,7 +103,7 @@ const NavbarComp = (props) => {
                                 <Flex
                                     w='100vw'
                                     display={display}
-                                    bgColor="gray.100"
+                                    bgColor="gray.700"
                                     zIndex={20}
                                     h="28vh"
                                     pos="fixed"
@@ -120,9 +117,10 @@ const NavbarComp = (props) => {
                                             mt={2}
                                             mr={3}
                                             aria-label="Open Menu"
+                                            bgColor={'transparent'}
                                             size="md"
                                             icon={
-                                                <IoClose />
+                                                <IoClose color='white'/>
                                             }
                                             onClick={() => changeDisplay('none')}
                                         />
@@ -130,6 +128,7 @@ const NavbarComp = (props) => {
                                     <Flex
                                         flexDir="column"
                                         align="center"
+                                        color={'white'}
                                     >
                                         {/* <ButtonGroup> */}
                                         <Button
@@ -186,18 +185,19 @@ const NavbarComp = (props) => {
                                         display={{ base: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
                                     >
                                         <ButtonGroup>
-                                            <Button type='button' colorScheme='facebook' onClick={() => navigate('/')}>Login</Button>
+                                            <Button type='button' colorScheme='twitter' onClick={() => navigate('/')}>Login</Button>
                                             {/* cara tampilin suggestion colorScheme itu delete smua sampe '' dibuat ulang nanti muncul */}
-                                            <Button type='button' variant='outline' colorScheme='facebook' onClick={() => navigate('/register')}>Register</Button>
+                                            <Button type='button' variant='outline' colorScheme='twitter' onClick={() => navigate('/register')}>Register</Button>
                                         </ButtonGroup>
                                     </Flex>
                                     {/* Mobile */}
                                     <IconButton
                                         aria-label="Open Menu"
                                         size="md"
+                                        bgColor={'transparent'}
                                         mr={-5}
                                         icon={
-                                            <FiMenu />
+                                            <FiMenu color='white'/>
                                         }
                                         onClick={() => changeDisplay('flex')}
                                         display={{ base: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
@@ -207,7 +207,7 @@ const NavbarComp = (props) => {
                                 <Flex
                                     w='100vw'
                                     display={display}
-                                    bgColor="gray.50"
+                                    bgColor="gray.700"
                                     zIndex={20}
                                     h="22vh"
                                     pos="fixed"
@@ -219,11 +219,12 @@ const NavbarComp = (props) => {
                                     <Flex justify="flex-end">
                                         <IconButton
                                             mt={2}
-                                            mr={8}
+                                            mr={4}
                                             aria-label="Open Menu"
+                                            bgColor={'transparent'}
                                             size="md"
                                             icon={
-                                                <IoClose />
+                                                <IoClose color='white'/>
                                             }
                                             onClick={() => changeDisplay('none')}
                                         />
@@ -237,6 +238,7 @@ const NavbarComp = (props) => {
                                             type='button'
                                             variant="ghost"
                                             aria-label="Login"
+                                            color={'white'}
                                             my={2}
                                             w="100%"
                                             onClick={() => navigate('/')}
@@ -246,7 +248,7 @@ const NavbarComp = (props) => {
                                             type='button'
                                             variant="ghost"
                                             aria-label="Register"
-
+                                            color={'white'}
                                             w="100%"
                                             onClick={() => navigate('/regis')}
                                         >Register</Button>

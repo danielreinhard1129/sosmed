@@ -32,28 +32,30 @@ const ForgetPassword = (props) => {
     if (props.loading) {
         return <Text><Loading /></Text>
     } else {
-        return <Flex
-            minH={'100vh'}
-            align={'center'}
-            justify={'center'}
-            bg={'gray.50'}
-        >
-            {/* <Container maxW='4xl'> */}
-            <Stack spacing={8} mx={'auto'} maxW={['md', 'lg']} py={12} px={6}>
-                <Box m='auto' my='26' py='6' px='8' boxShadow='md' bg='white' >
-                    <Text fontSize='4xl' fontWeight='bold' style={{ display: 'flex' }}>Forgot<Text fontSize='4xl' fontWeight='bold' color='facebook.500' pl='2'>Password</Text></Text>
-                    <FormControl my='6'>
-                        <FormLabel>Email address</FormLabel>
-                        <Input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
-                    </FormControl>
-                    <Stack spacing={10} pt={2}>
-                        <Button my='4' width='full' type='button' colorScheme='facebook' rounded="full" onClick={onBtnForgotPassword}>
-                            Send
-                        </Button>
-                    </Stack>
-                </Box>
-            </Stack>
-        </Flex>
+        return <Box minH={'92.5vh'}>
+            <Flex
+                mt={20}
+                align={'center'}
+                justify={'center'}
+                bgColor={'#15202b'}
+            >
+                {/* <Container maxW='4xl'> */}
+                <Stack spacing={8} mx={'auto'} maxW={['md', 'lg']} py={12} px={6} shadow={'dark-lg'}>
+                    <Box m='auto' my='26' py='6' px='8' bg='white' bgColor={'#15202b'}>
+                        <Text color={'white'} fontSize='4xl' fontWeight='bold' style={{ display: 'flex' }}>Forgot<Text fontSize='4xl' fontWeight='bold' color='twitter.500' pl='2'>Password</Text></Text>
+                        <FormControl my='6'>
+                            <FormLabel color={'white'}>Email address</FormLabel>
+                            <Input color={'white'} type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type in your email address' />
+                        </FormControl>
+                        <Stack spacing={10} pt={1}>
+                            <Button my='4' width='full' type='button' colorScheme='twitter' rounded="full" onClick={onBtnForgotPassword}>
+                                Send
+                            </Button>
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
+        </Box>
     }
 };
 

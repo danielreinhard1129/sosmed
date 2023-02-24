@@ -11,51 +11,52 @@ export default function NotFound(props) {
     const dataUsername = useSelector((state) => state.auth.username)
     React.useEffect(() => {
         setTimeout(() => {
-          setLoading(false);
+            setLoading(false);
         }, 2700); //millisecond
-      }, [])
+    }, [])
 
-      let link = '';
-      if(dataUsername){
+    let link = '';
+    if (dataUsername) {
         link = '/landing'
-      }else {
+    } else {
         link = '/';
-      }
+    }
 
     if (loading) {
         return <Text><Loading /></Text>
     } else {
         return (
             <Flex
-                bg={'gray.50'}
+                bgColor={'#15202b'}
                 minH={'100vh'}
                 align={'center'}
                 justify={'center'}
             >
-                <Box textAlign="center" py={10} px={6} >
+                <Box textAlign="center" py={10} px={6} shadow={'dark-lg'}>
                     <Heading
                         display="inline-block"
                         as="h2"
                         size="4xl"
                         // bgGradient="linear(to-r, teal.400, teal.600)"
-                        bg='facebook.500'
+                        bg='twitter.500'
                         backgroundClip="text">
                         404
                     </Heading>
-                    <Text fontSize='4xl' fontWeight="bold" mt={3} mb={2}>
+                    <Text color={'white'} fontSize='4xl' fontWeight="bold" mt={3} mb={2}>
                         Page Not Found
                     </Text>
-                    <Text mb={6}>
+                    <Text color={'white'} mb={6}>
                         The page you're looking for does not seem to exist
                     </Text>
 
                     <Button
-                        colorScheme="facebook"
+                        colorScheme="twitter"
                         // bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
                         color="white"
                         variant="solid"
+                        rounded={'full'}
                         onClick={() => navigate(`${link}`)}
-                        >
+                    >
                         Go to Home
                     </Button>
                 </Box>

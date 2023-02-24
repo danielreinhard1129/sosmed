@@ -28,7 +28,7 @@ export default function Sidebar() {
                 // display="none"
                 pos="sticky"
                 left="5"
-                minH="100vh"
+                minH="92.5vh"
                 marginTop='-4'
                 // boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
                 borderRadius={navSize == "small" ? "15px" : "30px"}
@@ -64,7 +64,7 @@ export default function Sidebar() {
                     <Box w='full'>
                         <Tooltip label='on going'>
                             <div>
-                                <Button type='button' colorScheme='facebook'
+                                <Button type='button' colorScheme='twitter'
                                     marginTop="5vh"
                                     marginBottom="5vh"
                                     // borderRadius={navSize == "small" ? "15px" : "15px"}
