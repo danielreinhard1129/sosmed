@@ -93,7 +93,7 @@ function Feeds(props) {
             setLengthTextArea(e.target.value.length);
           }}
         />
-        <Text textAlign="right">{lengthTextArea}/150</Text>
+        <Text color={'white'} textAlign="right">{lengthTextArea}/150</Text>
         <Flex my="2">
           <Tooltip label='on going'>
             <div>

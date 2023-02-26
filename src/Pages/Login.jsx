@@ -58,6 +58,7 @@ const LoginPage = (props) => {
                     });
                 } else {
                     // local storage hanya bisa menyimpan data dalam bentuk string
+                    console.log("res . dataaaa",res.data)
                     localStorage.setItem('sosmed_login', res.data.token); // menyimpan data ke local storage jd tidak perlu login lg
                     dispatch(loginUserAction(res.data));
                     navigate('/landing', { replace: true }); // replace page login, agar tidak bisa di back ke login page
