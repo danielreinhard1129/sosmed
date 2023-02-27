@@ -37,6 +37,7 @@ function App() {
     }, 3000); //millisecond
   }, [])
 
+  console.log = () => { }
   // 2. Render 2
   return <Box bgColor={'#15202b'}>
     <NavbarComp loading={loading} />

@@ -9,12 +9,12 @@ const INITIAL_STATE = {
 }
 
 export const authReducer = (state = INITIAL_STATE, action) => {
-    console.log("Data from action :", action);
+    // console.log("Data from action :", action);
     switch (action.type) {
         case "LOGIN_SUCCESS":
-            console.log("Data from action.payload :", action.payload);
-            console.log("Data from state :", state);
-            console.log("Data from combine :", { ...state, ...action.payload });
+            // console.log("Data from action.payload :", action.payload);
+            // console.log("Data from state :", state);
+            // console.log("Data from combine :", { ...state, ...action.payload });
             return { ...state, ...action.payload };
             // state ditimpa sama action.payload
         case "LOGOUT":
