@@ -37,7 +37,10 @@ function App() {
     }, 3000); //millisecond
   }, [])
 
-  console.log = () => { }
+
+  console.log = () => { } // cara agar console.log tidak muncul di browser
+
+
   // 2. Render 2
   return <Box bgColor={'#15202b'}>
     <NavbarComp loading={loading} />

@@ -35,7 +35,6 @@ const Verification = (props) => {
           duration: 2500,
           isClosable: true,
         });
-        navigate('/landing')
       }
     } catch (error) {
       console.log(error);
