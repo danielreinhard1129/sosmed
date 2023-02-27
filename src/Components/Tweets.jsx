@@ -72,7 +72,7 @@ function Tweets(props) {
   }
 
   let link = ''
-  if(props.username == dataUsername){
+  if (props.username == dataUsername) {
     link = '/myprofile'
   } else {
     link = `/other/${props.username}`
@@ -82,7 +82,7 @@ function Tweets(props) {
   return (
     <LinkBox shadow={'xl'} w='full'>
       <HStack align="start" my="2" p='4'>
-        <Avatar bgColor='gray.400' cursor='pointer' src={`${API_URL}${props.imgprofile}`} onClick={() => navigate(`${link}`)}/>
+        <Avatar bgColor='gray.400' cursor='pointer' src={`${API_URL}${props.imgprofile}`} onClick={() => navigate(`${link}`)} />
         {/* <Avatar as={Link} to="/username" name="username" src="" /> */}
         <Box paddingLeft='6'>
           <HStack cursor='pointer' onClick={() => navigate(`${link}`)}>
@@ -94,49 +94,57 @@ function Tweets(props) {
               {props.tweet}
             </Text>
           </Flex>
-          <Flex mt="2" w='full' justify='space-between' pr='8'>
-            <Tooltip label="on going">
-              <div>
-                <Flex align='center'>
-                  <IconButton
-                    icon={<AiOutlineMessage size="20" />}
-                    aria-label="Write comment"
-                    variant="ghost"
-                    as={Link}
-                    color={'white'}
-                  />
-                  <Text color={'white'}>1</Text>
-                </Flex>
-              </div>
-            </Tooltip>
+          <Box display={'flex'} mt="2" w='full'>
+            <div>
+              <Tooltip label="on going">
+                <div>
+                  <Flex align='center'>
+                    <IconButton
+                      icon={<AiOutlineMessage size="20" />}
+                      aria-label="Write comment"
+                      variant="ghost"
+                      as={Link}
+                      color={'white'}
+                    />
+                    <Text color={'white'}>1</Text>
+                  </Flex>
+                </div>
+              </Tooltip>
+            </div>
 
-            <Flex align='center'>
-              <IconButton
-                icon={filterLike.length > 0 ? <AiFillHeart size="20" /> : <AiOutlineHeart size="20" />}
-                aria-label="Like"
-                variant="ghost"
-                onClick={btnLike}
-                type='button'
-                color={'white'}
+            <div>
+              <Flex align='center'>
+                <IconButton
+                  icon={filterLike.length > 0 ? <AiFillHeart size="20" /> : <AiOutlineHeart size="20" />}
+                  aria-label="Like"
+                  variant="ghost"
+                  onClick={btnLike}
+                  type='button'
+                  color={'white'}
 
-              />
-              <Text color={'white'}>{props.countlike}</Text>
-            </Flex>
+                />
+                <Text color={'white'}>{props.countlike}</Text>
+              </Flex>
 
-            <Tooltip label="on going">
-              <div>
-                <Flex align='center'>
-                  <IconButton
-                    icon={<AiOutlineShareAlt size="20" />}
-                    aria-label="Share"
-                    variant="ghost"
-                    color={'white'}
-                  />
-                  <Text color={'white'}>1</Text>
-                </Flex>
-              </div>
-            </Tooltip>
-          </Flex>
+            </div>
+
+            <div>
+              <Tooltip label="on going">
+                <div>
+                  <Flex align='center'>
+                    <IconButton
+                      icon={<AiOutlineShareAlt size="20" />}
+                      aria-label="Share"
+                      variant="ghost"
+                      color={'white'}
+                    />
+                    <Text color={'white'}>1</Text>
+                  </Flex>
+                </div>
+              </Tooltip>
+
+            </div>
+          </Box>
         </Box>
       </HStack>
     </LinkBox>
